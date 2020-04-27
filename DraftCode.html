@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draft</title>
+    <style>
+        .black {
+            float: left;
+            width: 80px;
+            height: 80px;
+            background-color: #999;
+            font-size:50px;
+            text-align:center;
+            display: table-cell;
+            vertical-align:middle;
+        }
+        .white {
+            float: left;
+            width: 80px;
+            height: 80px;
+            background-color: #fff;
+            font-size:50px;
+            text-align:center;
+            display: table-cell;
+            vertical-align:middle;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function Board_Chess(x,y,color,value)
+    {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.value = value;
+    }
+    let boardChess = "<table border='25px solid #333' cellpadding='1' width='560px' height ='560px'>";
+    let arrayChess = [];
+    for(i=1;i<=8;i++)
+    {
+        arrayChess = new Array();
+        this.y = i;
+        boardChess = boardChess + "<tr>"
+        for (j=1;j<=8;j++)
+        {
+            this.x = j;
+            if ((i%2==1)&&(j%2==0))
+            {
+                boardChess += "<td>" + "<div class='white'>" + "</div>" + "</td>";
+            }
+            if ((i%2==1)&&(j%2==1))
+            {
+                boardChess += "<td>" + "<div class='black'>" + "</div>" + "</td>";
+            }
+            if ((i%2==0)&&(j%2==1))
+            {
+                boardChess += "<td>" + "<div class='white'>" + "</div>" + "</td>";
+            }
+            if ((i%2==0)&&(j%2==0))
+            {
+                boardChess += "<td>" + "<div class='black'>" + "</div>" + "</td>";
+            }
+        }
+        boardChess = boardChess +"</tr>";
+    }
+    boardChess = boardChess +"</table>";
+    document.write(boardChess);
+    function draw_Board_Chess()
+    {
+
+    }
+
+</script>
+</body>
+</html>
