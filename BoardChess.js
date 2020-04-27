@@ -1,46 +1,27 @@
-let canvas = document.getElementById("myCanvas1");
-const cellSize =40;
-class Cell {
-    constructor(x, y, width, height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+function draw_Broad(array)
+{
+    array = array + "<table border='1px'>";
+    for(i=0;i<8;i++)
+    {
+        array = new Array();
+        array[i][0] = array[i][0] + "<tr>";
+        for(j=0;j<8;j++)
+        {
+            array[i][j] = array[i][j] + "<td style='border: 1px solid black'>" + "adasdasd" + "</td>";
+        }
+        array[i][7]= array[i][7] + "</tr>" + "<br>";
     }
-
-    draw() {
-        let ctx = canvas.getContext("2d");
-        ctx.beginPath();
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.fillStyle = this.getRandomColor();
-        ctx.fill();
-        ctx.closePath();
-    }
+    array = array + "</table>";
+    out_board(array);
 }
-
-class GameBoard {
-    constructor(width, height) {
-        this.width = width;
-        this.height = height;
-        this.cells = [];
-    }
-
-    init() {
-        for (let i = 0; i < this.height; i++) {
-            for (let j = 0; j < this.width; j++) {
-                let cell = new Cell(i*cellSize, j*cellSize, cellSize, cellSize);
-                this.cells.push(cell);
-            }
+function out_board(array)
+{
+    for(i=0;i<8;i++)
+    {
+        for(j=0;j<8;j++)
+        {
+            document.write(array[i][j]);
         }
     }
 
-    draw() {
-        for (let i = 0; i <this.cells.length ; i++) {
-            this.cells[i].draw();
-        }
-    }
 }
-let gameBoard = new GameBoard(10,10);
-
-gameBoard.init();
-gameBoard.draw();
