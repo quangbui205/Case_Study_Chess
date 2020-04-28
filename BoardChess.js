@@ -1,27 +1,51 @@
-function draw_Broad(array)
+function cell_Board_Chess(name,isOccupied,cellValue)
 {
-    array = array + "<table border='1px'>";
-    for(i=0;i<8;i++)
+    this.name = name;
+    this.isOccupied = isOccupied;
+    this.cellValue = cellValue;
+    this.getName =function ()
     {
-        array = new Array();
-        array[i][0] = array[i][0] + "<tr>";
-        for(j=0;j<8;j++)
-        {
-            array[i][j] = array[i][j] + "<td style='border: 1px solid black'>" + "adasdasd" + "</td>";
-        }
-        array[i][7]= array[i][7] + "</tr>" + "<br>";
+        return this.name;
     }
-    array = array + "</table>";
-    out_board(array);
+    this.getIsOccupied = function()
+    {
+        return this.isOccupied;
+    }
+    this.getCellValue = function()
+    {
+        return this.cellValue;
+    }
+    this.setName =function()
+    {
+        this.name = name;
+    }
+    this.setIsOccupied = function()
+    {
+        this.isOccupied = isOccupied;
+    }
+    this.setCellValue = function()
+    {
+        this.cellValue= cellValue;
+    }
 }
-function out_board(array)
+function boardChess()
 {
+    let board = [];
+    let rowNum = "A";
+    let occupy = false;
+    let cellvalue = null;
     for(i=0;i<8;i++)
     {
+        let row = new Array();
+        board[i]= row;
+        let colNum = 1;
         for(j=0;j<8;j++)
         {
-            document.write(array[i][j]);
+            let namecell = colNum + rowNum.toString();
+            let cell = new cell_Board_Chess(namecell,occupy,cellvalue);
+            board[i][j] = cell;
+            colNum ++;
         }
+        String.fromCharCode(rowNum.charCodeAt() + 1);
     }
-
 }
