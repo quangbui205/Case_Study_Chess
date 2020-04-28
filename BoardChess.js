@@ -15,6 +15,10 @@ function cell_Board_Chess(name,isOccupied,cellValue)
     {
         return this.cellValue;
     }
+    this.getCell()
+    {
+        console.log(this.name);
+    }
     this.setName =function()
     {
         this.name = name;
@@ -48,4 +52,6 @@ function boardChess()
         }
         String.fromCharCode(rowNum.charCodeAt() + 1);
     }
+    board[4][4].getCell();
+    board[5][5].getCell();
 }
