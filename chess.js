@@ -20,7 +20,7 @@ const INVALID =0;
 const VALID =1;
 const VALID_CAPTUE =2;
 
-const piecesCharatees ={
+const piecesCharacters ={
     0:'p',
     1:'k',
     2:'b',
@@ -37,7 +37,7 @@ let blackCasualitiesText;
 let totalVictoriesText;
 
 let board;
-let currentTeam ="";
+let currentTeam;
 
 let curX;
 let curY;
@@ -71,8 +71,8 @@ function onload()
      curX =-1;
      curY =-1;
 
-     currentTeam =WHITE;
-     currentTeamText.textContent = "Whiteturn";
+     currentTeam = WHITE;
+     currentTeamText= "White's turn";
 
      whiteCasualities =[0,0,0,0];
      blackCasualities =[0,0,0,0];
@@ -80,7 +80,7 @@ function onload()
      repaintBoard();
      updateWhiteCasualities();
      updateBlackCasualities();
-     UpTotalVictories();
+     updateTotalVictories();
  }
  function onClick(event)
  {
@@ -211,10 +211,10 @@ function checkPossiblePlaysKing(curX, curY)
 {
     for(i=-1;i<=1;i++)
     {
-        if(curY+1>0||curY+1>BOARD_HEIGHT-1)continue;
+        if(curY+1<0||curY+1>BOARD_HEIGHT-1)continue;
         for(j=-1;j<=1;j++)
         {
-            if(curX+j>0 ||curX+j>BOARD_WIDTH-1)continue; //luu y
+            if(curX+j<0 ||curX+j>BOARD_WIDTH-1)continue; //luu y
             if(i==0 &&j==0)continue;
             checkPossiblePlay(curX+j, curY+i);
         }
@@ -279,8 +279,8 @@ function changeCurrentTeam()
 function repaintBoard()
 {
     drawBoard();
-    CheckPossiblePlays();
-    DrawPieces();
+    checkPossiblePlays();
+    drawPieces();
 }
 function drawBoard()
 {
@@ -337,7 +337,7 @@ function drawPieces()
         {
             if(board.tiles[i][j].team === EMPTY) continue;
 
-            if(boara.tiles[i][j].team === WHITE)
+            if(board.tiles[i][j].team === WHITE)
             {
                 chessCtx.fillStyle = "#ff0000";
             }
@@ -367,14 +367,14 @@ function updateCasualities(casualities, text)
         if(casualities[i]===0)continue;
         if(none)
         {
-            text.textContent = casualities[i]+ " " + piecesCharatees[i];
+            text = casualities[i]+ " " + piecesCharacters[i];
         }
     }
     if(none) text.textContent = "None";
 }
 function updateTotalVictories()
 {
-    totalVictoriesText.textContent = "Game won: White" + whiteVictories + "-black" + blackVictories;
+    totalVictoriesText = "Game won: White" + whiteVictories + "-black" + blackVictories;
 }
 function getOppositeTeam(team)
 {
