@@ -1,7 +1,7 @@
 const BOARD_WIDTH = 8;
 const BOARD_HEIGHT = 8;
 
-const TILE_SIZE =5;
+const TILE_SIZE = 50;
 const WHITE_TILE_COLOR = "white";
 const BLACK_TILE_COLOR = "black";
 const HIGHLIGHT_COLOR = "red";
@@ -345,7 +345,7 @@ function drawPieces()
             {
                 chessCtx.fillStyle = "#0000ff"
             }
-            chessCtx.font = "38 Arial";
+            chessCtx.font = "50 Arial";
             let pieceType = board.tiles[i][j].pieceType;
             chessCtx.fillText(piecesCharacters[pieceType],TILE_SIZE*(j+1/8),TILE_SIZE*(i+4/5));
         }
