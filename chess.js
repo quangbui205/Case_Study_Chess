@@ -82,7 +82,7 @@ function onload()
      updateBlackCasualities();
      updateTotalVictories();
  }
- function onClick(event)
+ function onclick(event)
  {
      let chessCanvasX = chessCanvas.getBoundingClientRect().left;
      let chessCanvasY = chessCanvas.getBoundingClientRect().top;
@@ -109,10 +109,10 @@ function onload()
              else
              {
                  whiteCasualities[board.tiles[y][x].pieceType]++;
-                 updateWHiteCasualities();
+                 updateWhiteCasualities();
              }
          }
-         moveSelectPiece(x,y);
+         moveSelectedPiece(x,y);
          changeCurrentTeam();
      }
      else
@@ -126,8 +126,8 @@ function onload()
  {
      if (curX<0 || curY<0) return;
 
-     let tule = borad.tile[curX][curY];
-     if (tile.team === Empty || tile.team!==currentTeam) return;
+     let tile = board.Tile[curX][curY];
+     if (tile.team === EMPTY || tile.team!==currentTeam) return;
 
      drawTile(curX,curY, HIGHLIGHT_COLOR);
      board.resetValidMoves();
@@ -227,7 +227,7 @@ function checkPossiblePlay(x,y)
 }
 function checkPossibleMove(x,y)
 {
-    if (board.tile[y][x].team !== EMPTY) return false;
+    if (board.tiles[y][x].team !== EMPTY) return false;
 
     board.validMoves[y][x] = VALID;
     drawCircle(x,y,HIGHLIGHT_COLOR);
@@ -238,12 +238,12 @@ function checkPossibleCapture(x,y)
     if(board.tiles[y][x].team !==getOppositeTeam(currentTeam))return false;
 
     board.validMoves[y][x] =VALID_CAPTUE;
-    drawCorrners(x,y,HIGHLIGHT_COLOR);
+    drawCorners(x,y,HIGHLIGHT_COLOR);
     return true;
 }
 function checkValidMovement(x,y)
 {
-    if(board.ValidMoves[y][x] === VALID||board.validMoves[y][x] === VALID_CAPTUE) return true;
+    if(board.validMoves[y][x] === VALID||board.validMoves[y][x] === VALID_CAPTUE) return true;
     else return false;
 }
 function checkValidCapture(x,y)
@@ -253,8 +253,8 @@ function checkValidCapture(x,y)
 }
 function moveSelectedPiece(x,y)
 {
-    board.tiles[y][x].pieceType = board.tiles[curY][CurX].pieceType;
-    board.tiles[y][x].team = board.tiles[curY][CurX].team;
+    board.tiles[y][x].pieceType = board.tiles[curY][curX].pieceType;
+    board.tiles[y][x].team = board.tiles[curY][curX].team;
 
     board.tiles[y][x].pieceType = EMPTY;
     board.tiles[y][x].team = EMPTY;
